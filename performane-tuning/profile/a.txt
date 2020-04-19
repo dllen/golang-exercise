@@ -1,0 +1,36 @@
+I'm trying to follow a simple Hello, World application in go:
+
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Println("Hello World!")
+}
+But when I build and run it, I get the following error:
+
+main.go:5:2: cannot find package "fmt" in any of:
+    /home/user/go/src/pkg/fmt (from $GOROOT)
+    /home/user/gocode/src/fmt (from $GOPATH)
+package test_program
+    imports runtime: cannot find package "runtime" in any of:
+    /home/user/go/src/pkg/runtime (from $GOROOT)
+    /home/user/gocode/src/runtime (from $GOPATH)
+Here is the ouput of go env:
+
+GOARCH="amd64"
+GOBIN=""
+GOCHAR="6"
+GOEXE=""
+GOHOSTARCH="amd64"
+GOHOSTOS="linux"
+GOOS="linux"
+GOPATH="/home/user/gocode"
+GORACE=""
+GOROOT="/home/user/go"
+GOTOOLDIR="/home/user/go/pkg/tool/linux_amd64"
+CC="gcc"
+GOGCCFLAGS="-g -O2 -fPIC -m64 -pthread"
+CGO_ENABLED="1"

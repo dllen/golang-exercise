@@ -1,0 +1,29 @@
+channel 实现的源码不复杂，推荐阅读，https://github.com/golang/go/blob/master/src/runtime/chan.go
+
+channel 是干什么的
+
+意义：channel 是用来通信的
+实际上：（数据拷贝了一份，并通过 channel 传递，本质就是个队列）
+
+channel 应该用在什么地方 核心：需要通信的地方
+例如以下场景：
+  通知广播
+  交换数据
+  显式同步
+  并发控制
+  ...
+  记住！channel 不是用来实现锁机制的，虽然有些地方可以用它来实现类似读写锁，保护临界区的功能，但不要这么用！
+
+
+基础特性
+
+操作	     值为 nil 的 channel	       被关闭的 channel	      正常的 channel
+close	      panic						panic				成功关闭
+c<-	         永远阻塞						panic				阻塞或成功发送
+<-c	         永远阻塞			            永远不阻塞	        阻塞或成功接收
+
+
+happens-before 特性
+  1.无缓冲时，接收 happens-before 发送
+  2.任何情况下，发送 happens-before 接收
+  3.close happens-before 接收
